@@ -1,0 +1,25 @@
+# .github/workflows/test-python.yml
+name: Python test
+
+on:
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-ltest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: set up python
+              uses: actions/setup-python@v3
+              with:
+                python-version: '3.9'
+
+            - name: install dependencies
+              run: |
+                pip install -r requirements.txt
+
+            - name: run tests
+              run: pytest
